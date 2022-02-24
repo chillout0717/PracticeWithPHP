@@ -13,49 +13,10 @@
 
 <body>
 
-    <nav class="navbar navbar-dark bg-secondary">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">글 상세보기</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href='/board_list.php'>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">회원가입</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">로그인</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                게시판 카테고리
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">잡담</a></li>
-                                <li><a class="dropdown-item" href="#">고민거리</a></li>
-                                <li><a class="dropdown-item" href="#">오늘 뭐먹지?</a></li>
-                            </ul>
-                        </li>
-                        <img src="https://previews.123rf.com/images/afe207/afe2071602/afe207160200028/52329315-m%C3%A4nnliches-avatarprofilbild-schattenbildlichtschatten.jpg" width="45px" height="45px" style="border-radius:70%;margin-left:1100px;">
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="margin-left:10px;">Jehyun Lim</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">로그아웃</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </nav>
-    </div>
+    <title>게시글 보기</title>
     <?php
+
+    require_once __DIR__ . '/top_bar.php';
 
     $board_no = $_GET["board_no"];
 
@@ -73,7 +34,7 @@
 
     $result1->execute();
 
-    $sql2 = "SELECT reply_user, reply_text, reply_no FROM reply WHERE board_no=" . $board_no . " ORDER by board_no";
+    $sql2 = "SELECT reply_user, reply_text, reply_no FROM reply WHERE board_no=" . $board_no;
 
     $result2 = $pdo->prepare($sql2);
 
@@ -107,36 +68,6 @@
             });
 
             $(function() {
-                $("button:contains('댓글 삭제')").on("click", function() {
-
-                    var msg = "정말 삭제하시겠습니까?";
-                    var flag = confirm(msg);
-                    if (flag == true) {
-
-                        self.location = "/board_delete_form.php?reply_no=<?php echo $row3['reply_no'] . '&board_no=' . $board_no ?>";
-
-                    } else {
-                        self.location = "/board_detail.php?board_no=<?= $board_no ?>"
-                    }
-                });
-
-            });
-
-            $(function() {
-                $("button:contains('댓글 수정')").on("click", function() {
-
-                    var msg = "정말 수정하시겠습니까?";
-                    var flag = confirm(msg);
-                    if (flag == true) {
-                        self.location = "/board_reply_form.php?reply_no=<?php echo $row3['reply_no'] . '&board_no=' . $board_no ?>";
-                    } else {
-                        self.location = "/board_detail.php?board_no=<?= $board_no ?>"
-                    }
-                });
-
-            });
-
-            $(function() {
                 $("button:contains('게시글 수정')").on("click", function() {
 
                     var msg = "정말 수정하시겠습니까?";
@@ -151,14 +82,53 @@
                 });
 
             });
+
+
+
+            $(function() {
+                $("button:contains('댓글 삭제')").on("click", function() {
+
+                    var msg = "정말 삭제하시겠습니까?";
+                    var flag = confirm(msg);
+                    if (flag == true) {
+
+                    } else {
+                        self.location = "/board_detail.php?board_no=<?= $board_no ?>"
+                    }
+                });
+
+            });
+
+            $(function() {
+                $("button:contains('댓글 수정')").on("click", function() {
+
+                    var msg = "정말 수정하시겠습니까?";
+                    var flag = confirm(msg);
+                    if (flag == true) {
+
+                    } else {
+                        self.location = "/board_detail.php?board_no=<?= $board_no ?>"
+                    }
+                });
+
+            });
+        </script>
         </script>
         <div class="top">
+
+            <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
+                <div class="container-fluid">
+
+                    게시글 보기
+
+                </div>
+            </nav>
 
             <?php
             $row1 = $result->fetch(PDO::FETCH_ASSOC)
 
             ?>
-            <div class="mb-3" style="margin-top:60px;">
+            <div class="mb-3" style="margin-top:10px;">
                 <label for="exampleFormControlInput1" class="form-label" style="margin-left: 600px;">제 목</label>
                 <div class="form-control" id="exampleFormControlInput1" style="width:500px;height:40px;font-size:12px;margin-left:600px;"><?php echo $row1["board_title"] ?></div>
             </div>
@@ -198,6 +168,7 @@
                                     <div class="card-header" style="color:dimgray;"><?php echo $row3["reply_user"] ?>
                                         <button class="btn btn-outline-secondary" style="width:75px; height:30px; font-size:0.7em;float:right" onclick="location.href='/board_delete_form.php?reply_no=<?php echo $row3['reply_no'] . '&board_no=' . $board_no ?>'">댓글 삭제</button>
                                         <button class="btn btn-outline-secondary" style="width:75px; height:30px; font-size:0.7em;float:right" onclick="location.href='/board_reply_update_form.php?reply_no=<?php echo $row3['reply_no'] . '&board_no=' . $board_no ?>'">댓글 수정</button>
+                                        <input type="hidden" name="reply_text" value="<?php echo $board_no ?>">
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text" style="color:dimgray;"><?php echo $row3["reply_text"] ?></p>

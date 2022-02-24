@@ -11,46 +11,15 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-dark bg-secondary">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">게시판 목록</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href='/board_list.php'>Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">회원가입</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">로그인</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                게시판 카테고리
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">잡담</a></li>
-                <li><a class="dropdown-item" href="#">고민거리</a></li>
-                <li><a class="dropdown-item" href="#">오늘 뭐먹지?</a></li>
-              </ul>
-            </li>
-            <img src="https://previews.123rf.com/images/afe207/afe2071602/afe207160200028/52329315-m%C3%A4nnliches-avatarprofilbild-schattenbildlichtschatten.jpg" width="45px" height="45px" style="border-radius:70%;margin-left:1100px;">
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="margin-left:10px;">Jehyun Lim</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">로그아웃</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <title>게시글 목록</title>
+  <?php
+  require_once __DIR__ . '/top_bar.php';
+  require_once __DIR__ . '/dbconn.php';
+  ?>
+  <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
+    <div class="container-fluid">
+      게시글 목록
+    </div>
   </nav>
   <form>
     <button class="btn btn-outline-secondary" name="sortNum" value="1" onclick="sort('date')" style="margin-top:20px; margin-bottom:20px; margin-left:1760px; width:60px; height:40px; font-size:0.7em">작성일</button>
@@ -58,8 +27,6 @@
   </form>
 
   <?php
-
-  require_once __DIR__ . '/dbconn.php';
 
   if (isset($_GET['page'])) {
     $page = $_GET['page'];
@@ -103,29 +70,22 @@
 
   $result = $pdo->prepare($sql);
   $result->execute();
-
-  ?>
-  <h5>
-    <?php
-    echo "Total " . $row_num . " POST";
-    ?>
-  </h5>
-  <?php
-
   $pdo = null;
   ?>
 
-
-
-
+  <h6>
+    <?php
+    echo "Total " . $row_num . "개의 글";
+    ?>
+  </h6>
   <table class="table">
     <thead class="table-active">
       <tr>
-        <th style="width:10%;text-align: center">번호</th>
-        <th style="width:60%;text-align: center">제목</th>
+        <th style="width:15%;text-align: center">번호</th>
+        <th style="width:55%;text-align: center">제목</th>
         <th style="width:10%;text-align: center">작성일</th>
         <th style="width:10%;text-align: center">작성자</th>
-        <th style="width:10%;text-align: center">조회수</th>
+        <th style="width:15%;text-align: center">조회수</th>
       </tr>
     </thead>
     <tbody>
@@ -168,13 +128,9 @@
     </tbody>
   </table>
 
-  <button type="button" class="btn btn-outline-secondary" onclick="location.href='/board_new_form.php'" style="margin-left:1800px; width:80px; height:40px; font-size:0.7em; margin-top:20px;">새글 작성</button>
+  <button type="button" class="btn btn-outline-secondary" onclick="location.href='/board_new_form.php'" style="margin-left:1800px; width:80px; height:40px; font-size:0.7em; margin-top:10px;">새글 작성</button>
 
-
-
-  &nbsp;&nbsp;&nbsp;&nbsp;
-
-  <nav aria-label="Page navigation example" style='margin-top:20px;'>
+  <nav aria-label="Page navigation example" style='margin-top:20px;margin-left:-160px;'>
     <ul class="pagination justify-content-center">
       <?php
       if ($page <= 1) {
@@ -199,8 +155,6 @@
       ?>
     </ul>
   </nav>
-  &nbsp;&nbsp;
-  <br><br><br><br><br>
 </body>
 
 </html>

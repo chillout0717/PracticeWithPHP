@@ -6,68 +6,38 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js">
-
 </head>
 
 <body>
     <?php
-
+    require_once __DIR__ . '/top_bar.php';
     $board_no = $_GET["board_no"];
     $reply_no = $_GET["reply_no"];
-
     ?>
-    <nav class="navbar navbar-dark bg-secondary">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-                <?php
-                if ($reply_no == null) {
-                ?><a class="navbar-brand" href="#">게시글 삭제</a>
-                <?php    } else {
-                ?><a class="navbar-brand" href="#">댓글 삭제</a>
-                <?php
-                }
-                ?>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href='/board_list.php'>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">회원가입</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">로그인</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                게시판 카테고리
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">잡담</a></li>
-                                <li><a class="dropdown-item" href="#">고민거리</a></li>
-                                <li><a class="dropdown-item" href="#">오늘 뭐먹지?</a></li>
-                            </ul>
-                        </li>
-                        <img src="https://previews.123rf.com/images/afe207/afe2071602/afe207160200028/52329315-m%C3%A4nnliches-avatarprofilbild-schattenbildlichtschatten.jpg" width="45px" height="45px" style="border-radius:70%;margin-left:1100px;">
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="margin-left:10px;">Jehyun Lim</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">로그아웃</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+
+    <?php
+    if ($reply_no == null) {
+    ?> <title>게시글 삭제</title>
+    <?php    } else {
+    ?> <title>댓글 삭제</title>
+    <?php }
+    ?>
+
+    <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
+        <div class="container-fluid">
+
+            <?php
+            if ($reply_no == null) {
+            ?> 게시글 삭제
+            <?php
+            } else {
+            ?> 댓글 삭제
+            <?php }
+            ?>
+        </div>
     </nav>
-
-
     <form action="/board_delete_action.php" method="post">
-        <table class="table table-bordered" style="width:500px;height:30px;margin-left:600px; margin-top:120px;">
+        <table class="table table-bordered" style="width:500px;height:30px;margin-left:660px; margin-top:200px;">
             <tr>
                 <?php
                 if ($reply_no == null) {
