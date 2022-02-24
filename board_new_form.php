@@ -3,7 +3,7 @@
 <nav class="navbar navbar-dark bg-secondary">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">게시판 목록</a>
+            <a class="navbar-brand" href="#">새글 작성</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -50,11 +50,9 @@
 </head>
 
 <body>
-    <h1 style="margin-left:680px;margin-top:40px;margin-bottom:40px">새글 작성</h1>
-
     <form action="/board_new_action.php" method="post">
         <div class="form-group">
-            <label for="exampleFormControlInput1" style="margin-left: 680px;">제 목</label>
+            <label for="exampleFormControlInput1" style="margin-left: 680px;margin-top:60px;">제 목</label>
             <input type="text" class="form-control" name="board_title" style="width:500px;height:40px;font-size:12px;margin-left:680px;">
         </div>
 

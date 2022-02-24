@@ -10,10 +10,23 @@
 </head>
 
 <body>
+    <?php
+
+    $board_no = $_GET["board_no"];
+    $reply_no = $_GET["reply_no"];
+
+    ?>
     <nav class="navbar navbar-dark bg-secondary">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">게시판 목록</a>
+                <?php
+                if ($reply_no == null) {
+                ?><a class="navbar-brand" href="#">게시글 삭제</a>
+                <?php    } else {
+                ?><a class="navbar-brand" href="#">댓글 삭제</a>
+                <?php
+                }
+                ?>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -51,15 +64,19 @@
             </div>
         </nav>
     </nav>
-    <h1 style="margin-left:600px;margin-top:40px;margin-bottom:40px">삭제</h1>
-    <?php
-    $board_no = $_GET["board_no"];
-    $reply_no = $_GET["reply_no"];
-    ?>
+
+
     <form action="/board_delete_action.php" method="post">
-        <table class="table table-bordered" style="width:500px;height:30px;margin-left:600px;">
+        <table class="table table-bordered" style="width:500px;height:30px;margin-left:600px; margin-top:120px;">
             <tr>
-                <td>비밀 번호를 입력하세요.</td>
+                <?php
+                if ($reply_no == null) {
+                ?> <td>게시글 비밀 번호를 입력해주세요.</td>
+                <?php } else {
+                ?> <td>댓글 비밀 번호를 입력해주세요.</td>
+                <?php
+                }
+                ?>
             </tr>
             <tr>
                 <td><input type="password" name="password" style="width:500px;">

@@ -13,7 +13,7 @@
     <nav class="navbar navbar-dark bg-secondary">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">게시판 목록</a>
+                <a class="navbar-brand" href="#">게시글 수정</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -51,14 +51,14 @@
             </div>
         </nav>
     </nav>
-    <h1 style="margin-left:600px;margin-top:40px;margin-bottom:40px">게시글 수정</h1>
+
 
     <?php
     $board_no = $_GET["board_no"];
     ?>
     <form action="/board_update_action.php" method="post">
         <div class="form-group">
-            <label for="exampleFormControlTextarea1" style="margin-left: 600px;">내 용</label>
+            <label for="exampleFormControlTextarea1" style="margin-left: 600px; margin-top:60px;">내 용</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="board_text" style="width:500px;height:300px;font-size:12px;margin-left:600px;" placeholder="수정할 내용을 적어주세요."></textarea>
             <input type="hidden" name="board_no" value="<?php echo $board_no ?>">
         </div>

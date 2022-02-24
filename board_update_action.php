@@ -28,7 +28,7 @@
 
     $pdo = null;
 
-    header("LOCATION: http://localhost/board_detail.php?board_no=".$board_no);
+    header("LOCATION: http://localhost/board_detail.php?board_no=" . $board_no);
     ?>
 </body>
 

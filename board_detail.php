@@ -16,7 +16,7 @@
     <nav class="navbar navbar-dark bg-secondary">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">게시판 목록</a>
+                <a class="navbar-brand" href="#">글 상세보기</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -153,12 +153,12 @@
             });
         </script>
         <div class="top">
-            <h1 style="margin-left:600px;margin-top:20px;margin-bottom:40px">게시글 상세보기</h1>
+
             <?php
             $row1 = $result->fetch(PDO::FETCH_ASSOC)
 
             ?>
-            <div class="mb-3">
+            <div class="mb-3" style="margin-top:60px;">
                 <label for="exampleFormControlInput1" class="form-label" style="margin-left: 600px;">제 목</label>
                 <div class="form-control" id="exampleFormControlInput1" style="width:500px;height:40px;font-size:12px;margin-left:600px;"><?php echo $row1["board_title"] ?></div>
             </div>
