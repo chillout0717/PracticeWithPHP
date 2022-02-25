@@ -8,8 +8,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item" >
-                        <a class="nav-link" href='/sign_up_form.php' >회원가입</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href='/sign_up_form.php'>회원가입</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href='/login_form.php'>로그인</a>

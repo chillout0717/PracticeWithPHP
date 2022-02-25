@@ -128,19 +128,19 @@
             ?>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label" style="margin-left:600px; margin-top:10px;">카테고리</label>
-                <div class="form-control" id="exampleFormControlInput1" style="width:500px;height:40px;font-size:12px;margin-left:600px;"><?php 
-                switch($row1["board_category"]){
-                    case "1":
-                        echo "잡담";
-                        break;
-                    case "2":
-                        echo "고민거리";
-                        break;
-                    case "3":
-                        echo "메뉴추천";
-                        break;
-                }
-                ?></div>
+                <div class="form-control" id="exampleFormControlInput1" style="width:500px;height:40px;font-size:12px;margin-left:600px;"><?php
+                                                                                                                                            switch ($row1["board_category"]) {
+                                                                                                                                                case "1":
+                                                                                                                                                    echo "잡담";
+                                                                                                                                                    break;
+                                                                                                                                                case "2":
+                                                                                                                                                    echo "고민거리";
+                                                                                                                                                    break;
+                                                                                                                                                case "3":
+                                                                                                                                                    echo "메뉴추천";
+                                                                                                                                                    break;
+                                                                                                                                            }
+                                                                                                                                            ?></div>
             </div>
             <div class="mb-3" style="margin-top:10px;">
                 <label for="exampleFormControlInput1" class="form-label" style="margin-left: 600px;">제 목</label>

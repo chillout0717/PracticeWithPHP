@@ -20,9 +20,9 @@
   ?>
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <b>게시글 목록  
-      <?php
-        switch($board_category){
+      <b>게시글 목록
+        <?php
+        switch ($board_category) {
           case "1":
             echo "잡담";
             break;
@@ -36,21 +36,21 @@
             echo "전체글";
             break;
         }
-      ?>
+        ?>
       </b>
     </div>
   </nav>
   <div class="sort" style=" display:flex;">
-  <form>
-    <button class="btn btn-outline-secondary" style="margin-top:20px; margin-bottom:5px; margin-left:1760px; width:60px; height:40px; font-size:0.7em"  onclick="location.href='/board_list.php'">작성일</button>
-    <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
-    <input type="hidden" name="sortNum" value="1">
-  </form>
-  <form>
-    <button class="btn btn-outline-secondary"  style="margin-top:20px; margin-bottom:5px; width:60px; height:40px; font-size:0.7em; margin-left:10px"  onclick="location.href='/board_list.php'">조회수</button>
-    <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
-    <input type="hidden" name="sortNum" value="2">
-  </form>
+    <form>
+      <button class="btn btn-outline-secondary" style="margin-top:20px; margin-bottom:5px; margin-left:1760px; width:60px; height:40px; font-size:0.7em" onclick="location.href='/board_list.php'">작성일</button>
+      <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
+      <input type="hidden" name="sortNum" value="1">
+    </form>
+    <form>
+      <button class="btn btn-outline-secondary" style="margin-top:20px; margin-bottom:5px; width:60px; height:40px; font-size:0.7em; margin-left:10px" onclick="location.href='/board_list.php'">조회수</button>
+      <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
+      <input type="hidden" name="sortNum" value="2">
+    </form>
   </div>
 
   <?php
@@ -60,11 +60,11 @@
   } else {
     $page = 1;
   }
-  
-  if($board_category == 0){
+
+  if ($board_category == 0) {
     $sql = "SELECT COUNT(*) FROM board";
-  }else{
-    $sql = "SELECT COUNT(*) FROM board WHERE board_category=".$board_category;
+  } else {
+    $sql = "SELECT COUNT(*) FROM board WHERE board_category=" . $board_category;
   }
   $result2 = $pdo->prepare($sql);
   $result2->execute();
@@ -85,22 +85,22 @@
 
   $total_block = ceil($total_page / $block_ct);
   $start_num = ($page - 1) * $list;
-  
+
   switch ($sortNum) {
 
     case "1":
-      if($board_category == null){
+      if ($board_category == null) {
         $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category in (1,2,3) order by board_date DESC limit " . $start_num . "," . $list . "";
-      }else{
-        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category=".$board_category." order by board_date DESC limit " . $start_num . "," . $list . "";
+      } else {
+        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category=" . $board_category . " order by board_date DESC limit " . $start_num . "," . $list . "";
       }
       break;
     case "2":
-      if($board_category == null){
+      if ($board_category == null) {
         $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category in (1,2,3) order by board_hit DESC limit " . $start_num . "," . $list . "";
-      }else{
-        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category=".$board_category." order by board_hit DESC limit " . $start_num . "," . $list . "";
-      } 
+      } else {
+        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category=" . $board_category . " order by board_hit DESC limit " . $start_num . "," . $list . "";
+      }
       break;
     default:
       $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category in (1,2,3) order by board_no DESC limit " . $start_num . "," . $list . "";
@@ -140,7 +140,7 @@
           </td>
           <td style="width:10%;text-align: center">
             <?php
-            switch($row["board_category"]){
+            switch ($row["board_category"]) {
               case "1":
                 echo "잡담";
                 break;
@@ -150,7 +150,7 @@
               case "3":
                 echo "메뉴추천";
                 break;
-              }        
+            }
             ?>
           </td>
           <td style="width:45%;text-align: center">

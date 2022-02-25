@@ -22,7 +22,7 @@
     echo "board_pw :" . $board_pw . "<br>";
     echo "board_category :" . $board_category . "<br>";
 
-    $sql = "UPDATE board SET board_text='" . $board_text . "', board_category='".$board_category."' WHERE board_no=" . $board_no . " AND board_pw=" . $board_pw . "";
+    $sql = "UPDATE board SET board_text='" . $board_text . "', board_category='" . $board_category . "' WHERE board_no=" . $board_no . " AND board_pw=" . $board_pw . "";
 
     $result = $pdo->prepare($sql);
 
