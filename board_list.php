@@ -15,16 +15,43 @@
   <?php
   require_once __DIR__ . '/top_bar.php';
   require_once __DIR__ . '/dbconn.php';
+  $sortNum = $_GET['sortNum'];
+  $board_category = $_GET['board_category'];
   ?>
-  <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
+  <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <b>게시글 목록</b>
+      <b>게시글 목록  
+      <?php
+        switch($board_category){
+          case "1":
+            echo "잡담";
+            break;
+          case "2";
+            echo "고민거리";
+            break;
+          case "3";
+            echo "메뉴추천";
+            break;
+          default;
+            echo "전체글";
+            break;
+        }
+      ?>
+      </b>
     </div>
   </nav>
+  <div class="sort" style=" display:flex;">
   <form>
-    <button class="btn btn-outline-secondary" name="sortNum" value="1" onclick="sort('date')" style="margin-top:20px; margin-bottom:5px; margin-left:1760px; width:60px; height:40px; font-size:0.7em">작성일</button>
-    <button class="btn btn-outline-secondary" name="sortNum" value="2" onclick="sort('hit')" style="margin-top:20px; margin-bottom:5px; width:60px; height:40px; font-size:0.7em">조회수</button>
+    <button class="btn btn-outline-secondary" style="margin-top:20px; margin-bottom:5px; margin-left:1760px; width:60px; height:40px; font-size:0.7em"  onclick="location.href='/board_list.php'">작성일</button>
+    <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
+    <input type="hidden" name="sortNum" value="1">
   </form>
+  <form>
+    <button class="btn btn-outline-secondary"  style="margin-top:20px; margin-bottom:5px; width:60px; height:40px; font-size:0.7em; margin-left:10px"  onclick="location.href='/board_list.php'">조회수</button>
+    <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
+    <input type="hidden" name="sortNum" value="2">
+  </form>
+  </div>
 
   <?php
 
@@ -33,7 +60,12 @@
   } else {
     $page = 1;
   }
-  $sql = "SELECT COUNT(*) FROM board";
+  
+  if($board_category == 0){
+    $sql = "SELECT COUNT(*) FROM board";
+  }else{
+    $sql = "SELECT COUNT(*) FROM board WHERE board_category=".$board_category;
+  }
   $result2 = $pdo->prepare($sql);
   $result2->execute();
   $row_num  = $result2->fetchColumn();
@@ -53,19 +85,25 @@
 
   $total_block = ceil($total_page / $block_ct);
   $start_num = ($page - 1) * $list;
-
-  $sortNum = $_GET['sortNum'];
-
+  
   switch ($sortNum) {
 
     case "1":
-      $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit FROM board order by board_date DESC limit " . $start_num . "," . $list . "";
+      if($board_category == null){
+        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category in (1,2,3) order by board_date DESC limit " . $start_num . "," . $list . "";
+      }else{
+        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category=".$board_category." order by board_date DESC limit " . $start_num . "," . $list . "";
+      }
       break;
     case "2":
-      $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit FROM board order by board_hit DESC limit " . $start_num . "," . $list . "";
+      if($board_category == null){
+        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category in (1,2,3) order by board_hit DESC limit " . $start_num . "," . $list . "";
+      }else{
+        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category=".$board_category." order by board_hit DESC limit " . $start_num . "," . $list . "";
+      } 
       break;
     default:
-      $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit FROM board order by board_no DESC limit " . $start_num . "," . $list . "";
+      $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category in (1,2,3) order by board_no DESC limit " . $start_num . "," . $list . "";
   }
 
   $result = $pdo->prepare($sql);
@@ -81,11 +119,12 @@
   <table class="table">
     <thead class="table-active">
       <tr>
-        <th style="width:15%;text-align: center">번호</th>
-        <th style="width:55%;text-align: center">제목</th>
+        <th style="width:10%;text-align: center">번호</th>
+        <th style="width:15%;text-align: center">카테고리</th>
+        <th style="width:30%;text-align: center">제목</th>
         <th style="width:10%;text-align: center">작성일</th>
         <th style="width:10%;text-align: center">작성자</th>
-        <th style="width:15%;text-align: center">조회수</th>
+        <th style="width:20%;text-align: center">조회수</th>
       </tr>
     </thead>
     <tbody>
@@ -99,7 +138,22 @@
             echo $row["board_no"];
             ?>
           </td>
-          <td style="width:60%;text-align: center">
+          <td style="width:10%;text-align: center">
+            <?php
+            switch($row["board_category"]){
+              case "1":
+                echo "잡담";
+                break;
+              case "2":
+                echo "고민거리";
+                break;
+              case "3":
+                echo "메뉴추천";
+                break;
+              }        
+            ?>
+          </td>
+          <td style="width:45%;text-align: center">
             <?php
             echo "<a style='color:black; text-decoration-line:none;' href='/board_detail.php?board_no=" . $row["board_no"] . "'>";
             echo $row["board_title"];
@@ -130,7 +184,7 @@
 
   <button type="button" class="btn btn-outline-secondary" onclick="location.href='/board_new_form.php'" style="margin-left:1800px; width:80px; height:40px; font-size:0.7em; margin-top:10px;">새글 작성</button>
 
-  <nav aria-label="Page navigation example" style='margin-top:20px;margin-left:-160px;'>
+  <nav aria-label="Page navigation example" style='margin-top:20px;margin-left:-110px;'>
     <ul class="pagination justify-content-center">
       <?php
       if ($page <= 1) {
@@ -144,13 +198,13 @@
         if ($page == $i) {
           echo "<li class='page-item'><a class='page-link' style='background:grey;color:black';'>$i</a></li>";
         } else {
-          echo "<li class='page-item'><a class='page-link' style='color:black' href='?sortNum=$sortNum&page=$i'>$i</a></li>";
+          echo "<li class='page-item'><a class='page-link' style='color:black' href='?board_category=$board_category&sortNum=$sortNum&page=$i'>$i</a></li>";
         }
       }
       if ($page >= $total_page) {
         echo "<li class='page-item'><a class='page-link' style='color:black'>마지막</a></li>";
       } else {
-        echo "<li class='page-item'><a class='page-link' style='color:black' href='?sortNum=$sortNum&page=$total_page'>마지막</a></li>";
+        echo "<li class='page-item'><a class='page-link' style='color:black' href='?board_category=$board_category&sortNum=$sortNum&page=$total_page'>마지막</a></li>";
       }
       ?>
     </ul>

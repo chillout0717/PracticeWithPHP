@@ -12,7 +12,7 @@
     $board_no = $_GET["board_no"];
     $board_hit = 1;
 
-    $sql = "UPDATE board SET board_hit = board_hit+1 WHERE board_no=" . $board_no . "";
+    $sql = "UPDATE board SET board_hit = board_hit + 1 WHERE board_no=" . $board_no . "";
 
     $result = $pdo->prepare($sql);
 

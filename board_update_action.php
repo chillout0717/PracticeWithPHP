@@ -16,11 +16,13 @@
     $board_no = $_POST["board_no"];
     $board_text = $_POST["board_text"];
     $board_pw = $_POST["board_pw"];
+    $board_category = $_POST["board_category"];
     echo "board_no : " . $board_no . "<br>";
     echo "board_text :" . $board_text . "<br>";
     echo "board_pw :" . $board_pw . "<br>";
+    echo "board_category :" . $board_category . "<br>";
 
-    $sql = "UPDATE board SET board_text='" . $board_text . "' WHERE board_no=" . $board_no . " AND board_pw=" . $board_pw . "";
+    $sql = "UPDATE board SET board_text='" . $board_text . "', board_category='".$board_category."' WHERE board_no=" . $board_no . " AND board_pw=" . $board_pw . "";
 
     $result = $pdo->prepare($sql);
 

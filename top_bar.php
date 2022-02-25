@@ -19,9 +19,10 @@
                             게시판 카테고리
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">잡담</a></li>
-                            <li><a class="dropdown-item" href="#">고민거리</a></li>
-                            <li><a class="dropdown-item" href="#">오늘 뭐먹지?</a></li>
+                            <li><a class="dropdown-item" href='/board_list.php'>전체글</a></li>
+                            <li><a class="dropdown-item" href='/board_list.php?sortNum=1&board_category=1&page=1'>잡담</a></li>
+                            <li><a class="dropdown-item" href='/board_list.php?sortNum=1&board_category=2&page=1'>고민거리</a></li>
+                            <li><a class="dropdown-item" href='/board_list.php?sortNum=1&board_category=3&page=1'>메뉴 추천</a></li>
                         </ul>
                     </li>
                     <img src="https://previews.123rf.com/images/afe207/afe2071602/afe207160200028/52329315-m%C3%A4nnliches-avatarprofilbild-schattenbildlichtschatten.jpg" width="45px" height="45px" style="border-radius:70%;margin-left:1080px;" onclick="location.href='/profile.php'">
