@@ -18,12 +18,12 @@
   ?>
   <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
     <div class="container-fluid">
-      게시글 목록
+      <b>게시글 목록</b>
     </div>
   </nav>
   <form>
-    <button class="btn btn-outline-secondary" name="sortNum" value="1" onclick="sort('date')" style="margin-top:20px; margin-bottom:20px; margin-left:1760px; width:60px; height:40px; font-size:0.7em">작성일</button>
-    <button class="btn btn-outline-secondary" name="sortNum" value="2" onclick="sort('hit')" style="margin-top:20px; margin-bottom:20px; width:60px; height:40px; font-size:0.7em">조회수</button>
+    <button class="btn btn-outline-secondary" name="sortNum" value="1" onclick="sort('date')" style="margin-top:20px; margin-bottom:5px; margin-left:1760px; width:60px; height:40px; font-size:0.7em">작성일</button>
+    <button class="btn btn-outline-secondary" name="sortNum" value="2" onclick="sort('hit')" style="margin-top:20px; margin-bottom:5px; width:60px; height:40px; font-size:0.7em">조회수</button>
   </form>
 
   <?php

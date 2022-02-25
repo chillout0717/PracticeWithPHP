@@ -83,8 +83,6 @@
 
             });
 
-
-
             $(function() {
                 $("button:contains('댓글 삭제')").on("click", function() {
 
@@ -119,7 +117,7 @@
             <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
                 <div class="container-fluid">
 
-                    게시글 보기
+                    <b>게시글 보기</b>
 
                 </div>
             </nav>
@@ -178,16 +176,20 @@
                                 <?php
                             }
                                 ?>
-
                                 </div>
                         </div>
                     <?php
                     } else {
-                    ?> <h5><?php echo "댓글이 아직 없습니다. 댓글을 써주세요!"; ?></h5>
+                    ?>
+                        <div class="card text-white bg-light" style="width:500px;height:150px">
+                            <div class="card-header" style="color:dimgray;"></div>
+                            <div class="card-body">
+                                <p class="card-text" style="color:dimgray;"><?php echo "댓글이 아직 없습니다. 댓글을 써주세요!"; ?></p>
+                            </div>
+                        </div>
                     <?php
                     }
                     ?>
-
                 </div>
             </div>
         </div>

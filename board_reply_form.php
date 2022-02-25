@@ -30,7 +30,7 @@
     ?>
     <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
         <div class="container-fluid">
-            댓글 쓰기
+            <b>댓글 쓰기<b>
         </div>
     </nav>
 

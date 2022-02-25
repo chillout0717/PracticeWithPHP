@@ -10,10 +10,16 @@
 </haed>
 
 <body>
+    <title>회원 정보</title>
     <?php
     require_once __DIR__ . '/top_bar.php';
     ?>
-    <div class="main">
+    <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
+        <div class="container-fluid">
+            <b>회원 정보</b>
+        </div>
+    </nav>
+    <div class="main" style="margin-top: 60px;">
         <section>
             <div class="container py-5">
                 <div class="row">
@@ -30,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8" style="height:30px;">
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="row">
@@ -97,6 +103,6 @@
         </section>
     </div>
     <div class="bottom">
-        <button id="button1"class="btn btn-outline-secondary" type="button" onclick="location.href='/board_list.php'" style="margin-left: 1440px; margin-top: 320px">확인</button>
+        <button id="button1" class="btn btn-outline-secondary" type="button" onclick="location.href='/board_list.php'" style="margin-left: 1440px; margin-top: 320px">확인</button>
     </div>
 </body>

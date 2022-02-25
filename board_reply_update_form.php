@@ -28,7 +28,7 @@ require_once __DIR__ . '/dbconn.php';
     ?>
     <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
         <div class="container-fluid">
-            댓글 수정
+            <b>댓글 수정</b>
         </div>
     </nav>
 

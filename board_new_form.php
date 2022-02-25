@@ -16,7 +16,7 @@ require_once __DIR__ . '/top_bar.php';
 
     <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
         <div class="container-fluid">
-            새글 쓰기
+            <b>새글 쓰기</b>
         </div>
     </nav>
     <form action="/board_new_action.php" method="post">

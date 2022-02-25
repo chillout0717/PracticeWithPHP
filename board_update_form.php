@@ -24,7 +24,7 @@
 
     <nav class="navbar navbar-light bg-light" style="margin-left:5px;">
         <div class="container-fluid">
-            게시글 수정
+            <b>게시글 수정</b>
         </div>
     </nav>
 

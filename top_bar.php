@@ -2,7 +2,7 @@
 <nav class="navbar navbar-dark bg-secondary">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <b><a class="navbar-brand" href='/board_list.php' style="margin-left:-30px;font-size:2em;">스캐너 커뮤니티</a></b>
+            <b><a class="navbar-brand" href='/board_list.php' style="margin-left:-30px;font-size:1.8em;">스캐너 커뮤니티</a></b>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
