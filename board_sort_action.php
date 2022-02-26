@@ -1,9 +1,7 @@
 <html>
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-
+    <?php
+        require_once __DIR__ . '/head.html';
+    ?>
 <body>
     <?php
     require_once __DIR__ . '/dbconn.php';

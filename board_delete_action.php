@@ -1,14 +1,4 @@
-<html>
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>게시글 삭제</title>
-</head>
-
-<body>
-    <h1>게시글 삭제</h1>
-
-    <?php
+<?php
     require_once __DIR__ . '/dbconn.php';
 
     $board_delete = $_POST["board_delete"];
@@ -44,6 +34,3 @@
         header("Location: http://localhost/board_detail.php?board_no=" . $board_no . "");
     }
     ?>
-</body>
-
-</html>

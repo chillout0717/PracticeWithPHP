@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>댓글 수정</title>
-</head>
-
-<body>
-    <h1>댓글 수정</h1>
-
+    
     <?php
 
     require_once __DIR__ . '/dbconn.php';
@@ -31,6 +21,3 @@
 
     header("Location: http://localhost/board_detail.php?board_no=" . $board_no . "");
     ?>
-</body>
-
-</html>

@@ -7,11 +7,9 @@ require_once __DIR__ . '/dbconn.php';
 ?>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js">
-    <title>댓글 수정</title>
+    <?php
+        require_once __DIR__ . '/head.html';
+    ?>
 </head>
 
 <body>

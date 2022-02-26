@@ -31,7 +31,7 @@
                         <a class="nav-link" style="margin-left:10px;" onclick="location.href='/profile.php'">Jehyun Lim</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">로그아웃</a>
+                        <a class="nav-link" onclick="logout()">로그아웃</a>
                     </li>
                 </ul>
             </div>
@@ -40,8 +40,18 @@
 </nav>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js">
+    <?php
+    require_once __DIR__ . '/head.html';
+    ?>
 </head>
+
+<script>
+     function logout() {
+            const data = confirm("정말 로그아웃 하시겠습니까?");
+            if (data) {
+                location.href = "log_out_action.php";
+            }else{
+               
+            }
+        }
+</script>

@@ -1,13 +1,4 @@
-<!DOCTYPE html>
 
-<html>
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>새글 등록</title>
-</head>
-
-<body>
     <?php
 
     require_once __DIR__ . '/dbconn.php';
@@ -31,6 +22,3 @@
 
     header("Location:http://localhost/board_list.php");
     ?>
-</body>
-
-</html>

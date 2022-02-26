@@ -2,48 +2,51 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <?php
+    require_once __DIR__ . '/head.html';
+    ?>
 </head>
 
 <body>
     <?php
     require_once __DIR__ . '/dbconn.php';
-
     $user_email = $_POST["user_email"];
     $user_pw = $_POST["user_pw"];
 
     echo "user_email = " . $user_email;
     echo "user_pw = " . $user_pw;
+    
+   
 
-    $sql = "SELECT user_pw FROM usercontrol WHERE user_email='" . $user_email . "'";
+    $sql = "SELECT user_pw FROM usercontrol WHERE user_email='{$user_email}'";
 
     $result = $pdo->prepare($sql);
     $result->execute();
+    $hashedPassword = $result->fetchColumn();
+
+    $passwordResult = password_verify($user_pw, $hashedPassword);
 
     $pdo = null;
-    $dbPw = $result->fetchColumn();
 
-    if ($user_pw == $dbPw) {
+    if ($passwordResult === true) {
+        session_start();
+        $_SESSION['user_email'] = $user_email;
+        print_r($_SESSION);
+        echo $_SESSION['user_email'];
     ?>
         <script>
             alert("정상적으로 로그인이 되었습니다.")
+            location.href = "board_list.php";
         </script>
-    <?php header("Location: http://localhost/board_list.php");
+    <?php
     } else {
     ?>
         <script>
             alert("로그인에 실패하였습니다. 다시 시도해주세요.")
+            location.href = "board_list.php";
         </script>
     <?php
-        header("Location: http://localhost/board_list.php");
     }
-    ?>
-    <?php
-
-    header("Location: http://localhost/board_list.php");
-
     ?>
 </body>
 
