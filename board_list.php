@@ -57,11 +57,13 @@
   } else {
     $page = 1;
   }
+
+  $sqlde = "SELECT COUNT(*) FROM board ";
   
   if($board_category == 0){
-    $sql = "SELECT COUNT(*) FROM board";
+    $sql = $sqlde;
   }else{
-    $sql = "SELECT COUNT(*) FROM board WHERE board_category=".$board_category;
+    $sql = $sqlde." WHERE board_category=".$board_category;
   }
   $result2 = $pdo->prepare($sql);
   $result2->execute();
@@ -82,25 +84,27 @@
 
   $total_block = ceil($total_page / $block_ct);
   $start_num = ($page - 1) * $list;
+
+  $sqlde1 = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board ";
   
   switch ($sortNum) {
 
     case "1":
       if($board_category == null){
-        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category in (1,2,3) order by board_date DESC limit " . $start_num . "," . $list . "";
+        $sql = $sqlde1." WHERE board_category in (1,2,3) order by board_date DESC limit " . $start_num . "," . $list . "";
       }else{
-        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category=".$board_category." order by board_date DESC limit " . $start_num . "," . $list . "";
+        $sql = $sqlde1." WHERE board_category=".$board_category." order by board_date DESC limit " . $start_num . "," . $list . "";
       }
       break;
     case "2":
       if($board_category == null){
-        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category in (1,2,3) order by board_hit DESC limit " . $start_num . "," . $list . "";
+        $sql = $sqlde1." WHERE board_category in (1,2,3) order by board_hit DESC limit " . $start_num . "," . $list . "";
       }else{
-        $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category=".$board_category." order by board_hit DESC limit " . $start_num . "," . $list . "";
+        $sql = $sqlde1." WHERE board_category=".$board_category." order by board_hit DESC limit " . $start_num . "," . $list . "";
       } 
       break;
     default:
-      $sql = "SELECT board_no, board_title, board_text, board_user, board_date, board_hit, board_category FROM board WHERE board_category in (1,2,3) order by board_no DESC limit " . $start_num . "," . $list . "";
+      $sql = $sqlde1." WHERE board_category in (1,2,3) order by board_no DESC limit " . $start_num . "," . $list . "";
   }
 
   $result = $pdo->prepare($sql);
@@ -187,7 +191,7 @@
       if ($page <= 1) {
         echo "<li class='page-item'><a class='page-link' style='color:black'>처음</a></li>";
       } else {
-        echo "<li class='page-item'><a class='page-link' style='color:black' href='?sortNum=$sortNum&page=1'>처음</a></li>";
+        echo "<li class='page-item'><a class='page-link' style='color:black' href='?board_category=$board_category&sortNum=$sortNum&page=1'>처음</a></li>";
       }
 
       for ($i = $block_start; $i <= $block_end; $i++) {

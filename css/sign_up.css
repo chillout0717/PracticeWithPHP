@@ -1,0 +1,51 @@
+.main{
+   width: 1800px;
+   height: 600px;
+   
+  
+}
+
+.qwe{
+    width:900px;
+    height: 300px;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    
+}
+
+.abc{
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.abc1{
+    display: flex;
+   
+}
+#a,#b,#c,#d{
+    padding-top: 20px;
+}
+
+#d{
+    padding-bottom: 20px;
+}
+
+#btn{
+    text-align: right;
+    
+}
+
+.pw{
+    display: flex;
+
+}
+
+.abc3{
+    display: flex;
+}
+
+
+
+
+
