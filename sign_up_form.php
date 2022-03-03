@@ -9,33 +9,26 @@
     <link rel="stylesheet" type="text/css" href='./css/sign_up.css'>
 
     <script>
-    $(function () {
+   $(document).ready(function() {
         
          $("#emailCheck").keyup(function(){
-             
-             var user_email = $("#emailCheck").val();
-             
 
-           if($("#emailCheck").val() !=""){
-             
             $.ajax({
                 url:"sign_up_checking_email.php",
                 type:"POST",
                 data:"user_email="+$("#emailCheck").val(),
                 
-                success : function (result){
-                    alert(result);
-                    if(result == 1){
-                        $("#emailCheck").attr('class','form-control is-valid');
-                    }else if(result == 2){
+                success : function(data){
+                   
+                    if(data == "bad"){
                         $("#emailCheck").attr('class','form-control is-invalid');
-                    }
+                        alert("bad"+data);
+                    }else if(data == "good"){
+                        $("#emailCheck").attr('class','form-control is-valid');
+                        alert("good"+data);
+                    } 
                 }
             });
-           }else{
-               alert('이메일을 입력해주세요');
-           }
-
         });
     
         $("#pw2").focusout(function(){
@@ -45,14 +38,16 @@
             if(pw1 !="" || pw2 !=""){
                 if(pw1 == pw2){
                     $("#pw2").attr('class', 'form-control is-valid');
+                    $("#pw1").attr('class', 'form-control is-valid');
                 }else{
                     $("#pw2").attr('class', 'form-control is-invalid');
+                    $("#pw1").attr('class', 'form-control is-valid');
                 }
             }
 
         });
 
-    });
+   });
     </script>
 
 </head>

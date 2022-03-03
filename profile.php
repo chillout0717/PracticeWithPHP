@@ -4,6 +4,33 @@
         require_once __DIR__ . '/head.html';
     ?>
     <link rel="stylesheet" type="text/css" href='./profile.css'>
+
+    <script>
+    $(function(){
+
+        $("button:contains('비밀번호 수정')").on("click", function(){
+            var msg = "현재 비밀번호를 입력해주세요.";
+            var msg1 = "변경하실 비밀번호를 입력해주세요.";
+            var msg2 = "변경하실 비밀버호를 한번 더 입력해주세요.";
+            var past_pw = prompt(msg);
+            var current_pw = prompt(msg1);
+            var re_current_pw = prompt(msg2);
+
+            var allData = {"past_pw":past_pw, "current_pw":current_pw, };
+            $.ajax({
+                url:"update_pw.php",
+                type:"POST",
+                data:allData,
+
+                success : function(data){
+
+                }
+
+            })
+            
+        });
+    });
+    </script>
 </haed>
 
 <body>
@@ -62,7 +89,7 @@
                                         <p class="text-muted mb-0" type="password">************</p>
                                     </div>
                                     <div class="col-sm-2">
-                                        <button class="btn btn-outline-secondary" style="font-size: 0.8em;" type="button">Edit</button>
+                                        <button class="btn btn-outline-secondary" style="font-size: 0.8em;" type="button">비밀번호 수정</button>
                                     </div>
                                 </div>
                                 <hr>
