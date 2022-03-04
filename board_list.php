@@ -47,70 +47,66 @@
 
   $json = file_get_contents($url);
 
-  $data = json_decode($json, true);
+  $data = json_decode($json, true); //true면 array, 없으면 obj를 된다.
 
-  $currentTemp = $data['list'][4]['main']['temp'] - 273.15;
-  $currentHumidity = $data['list'][4]['main']['humidity'];
+  $todayTemp = $data['list'][4]['main']['temp_max'] - 273.15;
+  $todayHumidity = $data['list'][4]['main']['humidity'];
+  $Weather1 = $data['list'][4]['weather'][0]['main'];
 
-  $tomorrowTemp = $data['list'][12]['main']['temp'] - 273.15;
+  $tomorrowTemp = $data['list'][12]['main']['temp_max'] - 273.15;
   $tomorrowHumidity = $data['list'][12]['main']['humidity'];
+  $Weather2 = $data['list'][12]['weather'][0]['main'];
 
-  $day_after_tomorrowTemp = $data['list'][20]['main']['temp'] - 273.15;
+  $day_after_tomorrowTemp = $data['list'][20]['main']['temp_max'] - 273.15;
   $day_after_tomorrowHumidity = $data['list'][20]['main']['humidity'];
-
+  $Weather3 = $data['list'][20]['weather'][0]['main'];
 
   ?>
+
   <div class="top">
     <div class="weather">
       <div class="card border-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">오늘날씨
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clouds-fill" viewBox="0 0 16 16">
-            <path d="M11.473 9a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 14h8.5a2.5 2.5 0 1 0-.027-5z" />
-            <path d="M14.544 9.772a3.506 3.506 0 0 0-2.225-1.676 5.502 5.502 0 0 0-6.337-4.002 4.002 4.002 0 0 1 7.392.91 2.5 2.5 0 0 1 1.17 4.769z" />
-          </svg>
+        <div class="card-header" id="weather1">오늘날씨
         </div>
         <div class="card-body">
-          <p class="card-text"><?php echo "현재온도 = " . $currentTemp ?>°C</p>
-          <p class="card-text"><?php echo "습도 = " . $currentHumidity ?>%</p>
+          <p class="card-text"><?php echo "최고온도 = " . $todayTemp ?>°C</p>
+          <p class="card-text"><?php echo "습도 = " . $todayHumidity ?>%</p>
+          <p class="card-text"><?php echo "날씨 = " . $Weather1 ?></p>
         </div>
       </div>
       <div class="card border-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">내일날씨
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-fill" viewBox="0 0 16 16">
-            <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z" />
-          </svg>
+        <div class="card-header" id="weather2">내일날씨
         </div>
         <div class="card-body">
-          <p class="card-text"><?php echo "현재온도 = " . $tomorrowTemp ?>°C</p>
+          <p class="card-text"><?php echo "최고온도 = " . $tomorrowTemp ?>°C</p>
           <p class="card-text"><?php echo "습도 = " . $tomorrowHumidity ?>%</p>
+          <p class="card-text"><?php echo "날씨 = " . $Weather2 ?></p>
         </div>
       </div>
       <div class="card border-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">모레날씨
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-rain-heavy-fill" viewBox="0 0 16 16">
-            <path d="M4.176 11.032a.5.5 0 0 1 .292.643l-1.5 4a.5.5 0 0 1-.936-.35l1.5-4a.5.5 0 0 1 .644-.293zm3 0a.5.5 0 0 1 .292.643l-1.5 4a.5.5 0 0 1-.936-.35l1.5-4a.5.5 0 0 1 .644-.293zm3 0a.5.5 0 0 1 .292.643l-1.5 4a.5.5 0 0 1-.936-.35l1.5-4a.5.5 0 0 1 .644-.293zm3 0a.5.5 0 0 1 .292.643l-1.5 4a.5.5 0 0 1-.936-.35l1.5-4a.5.5 0 0 1 .644-.293zm.229-7.005a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10H13a3 3 0 0 0 .405-5.973z" />
-          </svg>
+        <div class="card-header" id="weather3">모레날씨
         </div>
         <div class="card-body">
-          <p class="card-text"><?php echo "현재온도 = " . $day_after_tomorrowTemp ?>°C</p>
+          <p class="card-text"><?php echo "최고온도 = " . $day_after_tomorrowTemp ?>°C</p>
           <p class="card-text"><?php echo "습도 = " . $day_after_tomorrowHumidity ?>%</p>
+          <p class="card-text"><?php echo "날씨 = " . $Weather3 ?></p>
         </div>
       </div>
     </div>
+  </div>
 
 
-    <div class="sort">
-      <form>
-        <button class="btn btn-outline-secondary" style=" width:60px; height:40px; font-size:0.7em" onclick="location.href='/board_list.php'">작성일</button>
-        <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
-        <input type="hidden" name="sortNum" value="1">
-      </form>
-      <form>
-        <button class="btn btn-outline-secondary" style=" width:60px; height:40px; font-size:0.7em; " onclick="location.href='/board_list.php'">조회수</button>
-        <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
-        <input type="hidden" name="sortNum" value="2">
-      </form>
-    </div>
+  <div class="sort">
+    <form>
+      <button class="btn btn-outline-secondary" style=" width:60px; height:40px; font-size:0.7em" onclick="location.href='/board_list.php'">작성일</button>
+      <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
+      <input type="hidden" name="sortNum" value="1">
+    </form>
+    <form>
+      <button class="btn btn-outline-secondary" style=" width:60px; height:40px; font-size:0.7em; " onclick="location.href='/board_list.php'">조회수</button>
+      <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
+      <input type="hidden" name="sortNum" value="2">
+    </form>
   </div>
 
   <?php
@@ -240,20 +236,21 @@
       ?>
     </tbody>
   </table>
-  <div class="search">
-    
+  
+  <button id="newBtn" type="button" class="btn btn-outline-secondary" onclick="location.href='/board_new_form.php'" style="width:80px; height:40px; font-size:0.7em; float: right;">새글 작성</button>
+  
+   <div class="search justify-content-center">
+    <select class="btn btn-outline-secondary">
+      <option>번호</option>
+      <option>제목</option>
+      <option>작성자</option>
+    </select>
+    <input id="search" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
   </div>
-  <h6>
-    <?php
-    echo "Total " . $row_num . "개의 글";
-    ?>
-  </h6>
-  </div>
-
-  <button type="button" class="btn btn-outline-secondary" onclick="location.href='/board_new_form.php'" style="margin-left:1800px; width:80px; height:40px; font-size:0.7em; margin-top:10px;">새글 작성</button>
+  <br>
   <div class="total">
-
-    <nav aria-label="Page navigation example" style='margin-top:20px;margin-left:-110px;'>
+    <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <?php
         if ($page <= 1) {
@@ -278,7 +275,7 @@
         ?>
       </ul>
     </nav>
-
+  </div>
 </body>
 
 </html>

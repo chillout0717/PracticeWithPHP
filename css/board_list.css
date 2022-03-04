@@ -1,15 +1,10 @@
 .card{
     display: inline-block;
     height: 40px;
-   
 }
 
 p{
     font-size:0.8em;
-}
-
-svg{
-   float: right;
 }
 
 .weather{
@@ -18,16 +13,5 @@ svg{
 
 .sort{
     float: left;
-    display: flex;
-    padding-left: 20px;
-    padding-top: 40px;
-}
-
-#search{
-    width: 300px;
-   
-}
-
-.search{
     display: flex;
 }
