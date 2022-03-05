@@ -3,6 +3,7 @@
 
 <head>
   <?php
+
   require_once __DIR__ . '/head.html';
   ?>
   <link rel="stylesheet" type="text/css" href='./css/board_list.css'>
@@ -42,25 +43,29 @@
 
   <?php
 
+  try {
+    $url = "https://api.openweathermap.org/data/2.5/forecast?q=cypress&appid=c52bf429d5f41ca2f4a178b210f3c55a";
 
-  $url = "https://api.openweathermap.org/data/2.5/forecast?q=cypress&appid=c52bf429d5f41ca2f4a178b210f3c55a";
+    $json = file_get_contents($url);
 
-  $json = file_get_contents($url);
+    $data = json_decode($json, true); //true면 array, 없으면 obj를 된다.
 
-  $data = json_decode($json, true); //true면 array, 없으면 obj를 된다.
+    $todayTemp = $data['list'][4]['main']['temp_max'] - 273.15;
+    $todayHumidity = $data['list'][4]['main']['humidity'];
+    $weather1 = $data['list'][4]['weather'][0]['main'];
 
-  $todayTemp = $data['list'][4]['main']['temp_max'] - 273.15;
-  $todayHumidity = $data['list'][4]['main']['humidity'];
-  $Weather1 = $data['list'][4]['weather'][0]['main'];
+    $tomorrowTemp = $data['list'][12]['main']['temp_max'] - 273.15;
+    $tomorrowHumidity = $data['list'][12]['main']['humidity'];
+    $weather2 = $data['list'][12]['weather'][0]['main'];
 
-  $tomorrowTemp = $data['list'][12]['main']['temp_max'] - 273.15;
-  $tomorrowHumidity = $data['list'][12]['main']['humidity'];
-  $Weather2 = $data['list'][12]['weather'][0]['main'];
-
-  $day_after_tomorrowTemp = $data['list'][20]['main']['temp_max'] - 273.15;
-  $day_after_tomorrowHumidity = $data['list'][20]['main']['humidity'];
-  $Weather3 = $data['list'][20]['weather'][0]['main'];
-
+    $day_after_tomorrowTemp = $data['list'][20]['main']['temp_max'] - 273.15;
+    $day_after_tomorrowHumidity = $data['list'][20]['main']['humidity'];
+    $weather3 = $data['list'][20]['weather'][0]['main'];
+  } catch (Exception $e) {
+    $weather1 = "인터넷 연결이 안됩니다.";
+    $weather2 = "인터넷 연결이 안됩니다.";
+    $weather3 = "인터넷 연결이 안됩니다.";
+  }
   ?>
 
   <div class="top">
@@ -71,7 +76,7 @@
         <div class="card-body">
           <p class="card-text"><?php echo "최고온도 = " . $todayTemp ?>°C</p>
           <p class="card-text"><?php echo "습도 = " . $todayHumidity ?>%</p>
-          <p class="card-text"><?php echo "날씨 = " . $Weather1 ?></p>
+          <p class="card-text"><?php echo "날씨 = " . $weather1 ?></p>
         </div>
       </div>
       <div class="card border-light mb-3" style="max-width: 18rem;">
@@ -80,7 +85,7 @@
         <div class="card-body">
           <p class="card-text"><?php echo "최고온도 = " . $tomorrowTemp ?>°C</p>
           <p class="card-text"><?php echo "습도 = " . $tomorrowHumidity ?>%</p>
-          <p class="card-text"><?php echo "날씨 = " . $Weather2 ?></p>
+          <p class="card-text"><?php echo "날씨 = " . $weather2 ?></p>
         </div>
       </div>
       <div class="card border-light mb-3" style="max-width: 18rem;">
@@ -89,24 +94,22 @@
         <div class="card-body">
           <p class="card-text"><?php echo "최고온도 = " . $day_after_tomorrowTemp ?>°C</p>
           <p class="card-text"><?php echo "습도 = " . $day_after_tomorrowHumidity ?>%</p>
-          <p class="card-text"><?php echo "날씨 = " . $Weather3 ?></p>
+          <p class="card-text"><?php echo "날씨 = " . $weather3 ?></p>
         </div>
       </div>
     </div>
-  </div>
-
-
-  <div class="sort">
-    <form>
-      <button class="btn btn-outline-secondary" style=" width:60px; height:40px; font-size:0.7em" onclick="location.href='/board_list.php'">작성일</button>
-      <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
-      <input type="hidden" name="sortNum" value="1">
-    </form>
-    <form>
-      <button class="btn btn-outline-secondary" style=" width:60px; height:40px; font-size:0.7em; " onclick="location.href='/board_list.php'">조회수</button>
-      <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
-      <input type="hidden" name="sortNum" value="2">
-    </form>
+    <div class="sort">
+      <form>
+        <button class="btn btn-outline-secondary" style=" width:60px; height:40px; font-size:0.7em" onclick="location.href='/board_list.php'">작성일</button>
+        <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
+        <input type="hidden" name="sortNum" value="1">
+      </form>
+      <form>
+        <button class="btn btn-outline-secondary" style=" width:60px; height:40px; font-size:0.7em; " onclick="location.href='/board_list.php'">조회수</button>
+        <input type="hidden" name="board_category" value="<?php echo $board_category ?>">
+        <input type="hidden" name="sortNum" value="2">
+      </form>
+    </div>
   </div>
 
   <?php
@@ -236,19 +239,23 @@
       ?>
     </tbody>
   </table>
-  
+
   <button id="newBtn" type="button" class="btn btn-outline-secondary" onclick="location.href='/board_new_form.php'" style="width:80px; height:40px; font-size:0.7em; float: right;">새글 작성</button>
-  
-   <div class="search justify-content-center">
-    <select class="btn btn-outline-secondary">
-      <option>번호</option>
-      <option>제목</option>
-      <option>작성자</option>
-    </select>
-    <input id="search" type="search" class="form-control" placeholder="Search..." aria-label="Search">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-  </div>
+
+  <form action="/board_search.action.php" method="get">
+    <div class="search" style="display:flex; padding-left:680px">
+      <select class="btn btn-outline-secondary" name="search_category">
+        <option value="1" selected>번호</option>
+        <option value="2">제목</option>
+        <option value="3">작성자</option>
+      </select>
+      <input id="search" type="text" name="search_text" class="form-control" placeholder="Search..." style="width:400px;">
+      <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </div>
+  </form>
+
   <br>
+
   <div class="total">
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
