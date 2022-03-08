@@ -17,6 +17,7 @@
   require_once __DIR__ . '/dbconn.php';
   $sortNum = $_GET['sortNum'];
   $board_category = $_GET['board_category'];
+
   ?>
   <nav class="navbar">
     <div class="container-fluid">
@@ -43,29 +44,40 @@
 
   <?php
 
-  try {
+
     $url = "https://api.openweathermap.org/data/2.5/forecast?q=cypress&appid=c52bf429d5f41ca2f4a178b210f3c55a";
 
     $json = file_get_contents($url);
-
+    
     $data = json_decode($json, true); //true면 array, 없으면 obj를 된다.
 
-    $todayTemp = $data['list'][4]['main']['temp_max'] - 273.15;
-    $todayHumidity = $data['list'][4]['main']['humidity'];
+    if($json==false){
+      $todayTemp = "값을";
+      $todayHumidity = "찾아 올 수";
+      $weather1 = " 없습니다.";
+
+      $tomorrowTemp = "값을";
+      $tomorrowHumidity = "찾아 올 수";
+      $weather2 = " 없습니다."; 
+  
+      $day_after_tomorrowTemp = "값을";
+      $day_after_tomorrowHumidity = "찾아 올 수";
+      $weather3 = " 없습니다.";
+
+    }else{
+    $todayTemp = $data['list'][4]['main']['temp_max'] - 273.15."°C";
+    $todayHumidity = $data['list'][4]['main']['humidity']."%";
     $weather1 = $data['list'][4]['weather'][0]['main'];
 
-    $tomorrowTemp = $data['list'][12]['main']['temp_max'] - 273.15;
-    $tomorrowHumidity = $data['list'][12]['main']['humidity'];
+    $tomorrowTemp = $data['list'][12]['main']['temp_max'] - 273.15."°C";
+    $tomorrowHumidity = $data['list'][12]['main']['humidity']."%";
     $weather2 = $data['list'][12]['weather'][0]['main'];
 
-    $day_after_tomorrowTemp = $data['list'][20]['main']['temp_max'] - 273.15;
-    $day_after_tomorrowHumidity = $data['list'][20]['main']['humidity'];
+    $day_after_tomorrowTemp = $data['list'][20]['main']['temp_max'] - 273.15."°C";
+    $day_after_tomorrowHumidity = $data['list'][20]['main']['humidity']."%";
     $weather3 = $data['list'][20]['weather'][0]['main'];
-  } catch (Exception $e) {
-    $weather1 = "인터넷 연결이 안됩니다.";
-    $weather2 = "인터넷 연결이 안됩니다.";
-    $weather3 = "인터넷 연결이 안됩니다.";
   }
+ 
   ?>
 
   <div class="top">
@@ -74,8 +86,8 @@
         <div class="card-header" id="weather1">오늘날씨
         </div>
         <div class="card-body">
-          <p class="card-text"><?php echo "최고온도 = " . $todayTemp ?>°C</p>
-          <p class="card-text"><?php echo "습도 = " . $todayHumidity ?>%</p>
+          <p class="card-text"><?php echo "최고온도 = " . $todayTemp ?></p>
+          <p class="card-text"><?php echo "습도 = " . $todayHumidity ?></p>
           <p class="card-text"><?php echo "날씨 = " . $weather1 ?></p>
         </div>
       </div>
@@ -83,8 +95,8 @@
         <div class="card-header" id="weather2">내일날씨
         </div>
         <div class="card-body">
-          <p class="card-text"><?php echo "최고온도 = " . $tomorrowTemp ?>°C</p>
-          <p class="card-text"><?php echo "습도 = " . $tomorrowHumidity ?>%</p>
+          <p class="card-text"><?php echo "최고온도 = " . $tomorrowTemp ?></p>
+          <p class="card-text"><?php echo "습도 = " . $tomorrowHumidity ?></p>
           <p class="card-text"><?php echo "날씨 = " . $weather2 ?></p>
         </div>
       </div>
@@ -92,8 +104,8 @@
         <div class="card-header" id="weather3">모레날씨
         </div>
         <div class="card-body">
-          <p class="card-text"><?php echo "최고온도 = " . $day_after_tomorrowTemp ?>°C</p>
-          <p class="card-text"><?php echo "습도 = " . $day_after_tomorrowHumidity ?>%</p>
+          <p class="card-text"><?php echo "최고온도 = " . $day_after_tomorrowTemp ?></p>
+          <p class="card-text"><?php echo "습도 = " . $day_after_tomorrowHumidity ?></p>
           <p class="card-text"><?php echo "날씨 = " . $weather3 ?></p>
         </div>
       </div>
@@ -242,10 +254,10 @@
 
   <button id="newBtn" type="button" class="btn btn-outline-secondary" onclick="location.href='/board_new_form.php'" style="width:80px; height:40px; font-size:0.7em; float: right;">새글 작성</button>
 
-  <form action="/board_search.action.php" method="get">
+  <form action="/board_search.action.php" method="GET">
     <div class="search" style="display:flex; padding-left:680px">
       <select class="btn btn-outline-secondary" name="search_category">
-        <option value="1" selected>번호</option>
+        <option value="1">내용</option>
         <option value="2">제목</option>
         <option value="3">작성자</option>
       </select>

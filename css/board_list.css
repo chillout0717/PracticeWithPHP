@@ -9,10 +9,9 @@ p{
 
 .weather{
     float: right;
+    
 }
 
 .sort{
-    float: left;
     display: flex;
-    
 }

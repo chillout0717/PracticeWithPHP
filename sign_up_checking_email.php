@@ -10,9 +10,6 @@
 
     $count  = $result1 -> rowCount();
 
-    print_r($result1);
-    print_r($count);
-
     if($count <1){  
         echo "good";
     }else{

@@ -9,45 +9,53 @@
     <link rel="stylesheet" type="text/css" href='./css/sign_up.css'>
 
     <script>
-   $(document).ready(function() {
-        
-         $("#emailCheck").keyup(function(){
+        $(document).ready(function() {
 
-            $.ajax({
-                url:"sign_up_checking_email.php",
-                type:"POST",
-                data:"user_email="+$("#emailCheck").val(),
-                
-                success : function(data){
-                   
-                    if(data == "bad"){
-                        $("#emailCheck").attr('class','form-control is-invalid');
-                        alert("bad"+data);
-                    }else if(data == "good"){
-                        $("#emailCheck").attr('class','form-control is-valid');
-                        alert("good"+data);
-                    } 
-                }
+            $(function() {
+                $("#emailCheck").on('keyup', function(event) {
+                    if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+                        var inputVal = $(this).val();
+
+                        $(this).val(inputVal.replace(/[^a-z0-9@_.-]/gi, ''));
+                    }
+                });
             });
-        });
-    
-        $("#pw2").focusout(function(){
-            var pw2 = $("#pw2").val();
-            var pw1 = $("#pw1").val();
 
-            if(pw1 !="" || pw2 !=""){
-                if(pw1 == pw2){
-                    $("#pw2").attr('class', 'form-control is-valid');
-                    $("#pw1").attr('class', 'form-control is-valid');
-                }else{
-                    $("#pw2").attr('class', 'form-control is-invalid');
-                    $("#pw1").attr('class', 'form-control is-valid');
+            $("#emailCheck").keyup(function() {
+
+                $.ajax({
+                    url: "sign_up_checking_email.php",
+                    type: "POST",
+                    data: "user_email=" + $("#emailCheck").val(),
+
+                    success: function(data) {
+
+                        if (data === "bad") {
+                            $("#emailCheck").attr('class', 'form-control is-invalid');
+                        } else if (data === "good") {
+                            $("#emailCheck").attr('class', 'form-control is-valid');
+                        }
+                    }
+                });
+            });
+
+            $("#pw2").focusout(function() {
+                var pw2 = $("#pw2").val();
+                var pw1 = $("#pw1").val();
+
+                if (pw1 != "" || pw2 != "") {
+                    if (pw1 == pw2) {
+                        $("#pw2").attr('class', 'form-control is-valid');
+                        $("#pw1").attr('class', 'form-control is-valid');
+                    } else {
+                        $("#pw2").attr('class', 'form-control is-invalid');
+                        $("#pw1").attr('class', 'form-control is-valid');
+                    }
                 }
-            }
+
+            });
 
         });
-
-   });
     </script>
 
 </head>
@@ -57,7 +65,7 @@
     <?php
     require_once __DIR__ . '/top_bar.php';
     require_once __DIR__ . '/dbconn.php';
-   
+
     $sql = "SELECT user_email FROM usercontrol";
     $result = $pdo->prepare($sql);
     $result->execute();
@@ -138,4 +146,5 @@
     </div>
     </div>
 </body>
+
 </html>
