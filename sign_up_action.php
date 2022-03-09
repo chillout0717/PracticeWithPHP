@@ -14,6 +14,11 @@
 
     $hashedPassword = password_hash($user_pw, PASSWORD_DEFAULT);
     echo $hashedPassword;
+    //hashed 구조  bcrypt(Eksblowfish) 단방향 해싱 알고리즘을 사용했다.
+    //기본적인 암호화 구조는 일단 abcd라고 비밀번호를 설정했다면
+    //이것을 아스키코드값으로 인코딩후 32비트 단위로 만듬
+    //그리고 그것을 알고리즘을 통해서 이런 저런 가공을 거친후 만들어짐 
+    //https://devjounal.tistory.com/85
 
     echo "user_fullname : " . $user_fullname . "<br>";
     echo "user_phone : " . $user_phone . "<br>";

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+require_once __DIR__ . '/session.php';
+?>
 <nav class="navbar navbar-dark bg-secondary">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
@@ -8,12 +11,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href='/sign_up_form.php'>회원가입</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href='/login_form.php'>로그인</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             게시판 카테고리
@@ -25,14 +22,26 @@
                             <li><a class="dropdown-item" href='/board_list.php?sortNum=1&board_category=3&page=1'>메뉴 추천</a></li>
                         </ul>
                     </li>
-                    <img src="https://previews.123rf.com/images/afe207/afe2071602/afe207160200028/52329315-m%C3%A4nnliches-avatarprofilbild-schattenbildlichtschatten.jpg" width="45px" height="45px" style="border-radius:70%;margin-left:1080px;" onclick="location.href='/profile.php'">
+                    <img src="https://previews.123rf.com/images/afe207/afe2071602/afe207160200028/52329315-m%C3%A4nnliches-avatarprofilbild-schattenbildlichtschatten.jpg" width="45px" height="45px" style="border-radius:70%;float:right;" onclick="location.href='/profile.php'">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="margin-left:10px;" onclick="location.href='/profile.php'">Jehyun Lim</a>
+                        <a class="nav-link" style="margin-left:10px;" onclick="location.href='/profile.php'"><?php echo $_SESSION['user_fullname'] ?></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="logout()">로그아웃</a>
-                    </li>
+
+                    <?php
+                    if (isset($_SESSION['user_fullname'])) {
+                    ?> <li class="nav-item">
+                            <a class="nav-link" onclick="logout()">로그아웃</a>
+                        </li>
+                    <?php } else {
+                    ?> <li class="nav-item">
+                            <a class="nav-link" href='/sign_up_form.php'>회원가입</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='/login_form.php'>로그인</a>
+                        </li>
+                    <?php }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -46,12 +55,12 @@
 </head>
 
 <script>
-     function logout() {
-            const data = confirm("정말 로그아웃 하시겠습니까?");
-            if (data) {
-                location.href = "log_out_action.php";
-            }else{
-               
-            }
+    function logout() {
+        const data = confirm("정말 로그아웃 하시겠습니까?");
+        if (data) {
+            location.href = "log_out_action.php";
+        } else {
+
         }
+    }
 </script>

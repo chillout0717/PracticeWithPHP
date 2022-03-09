@@ -1,6 +1,7 @@
 <?php
     require_once __DIR__ . '/dbconn.php';
 
+    $superman = $_POST["superman"];
     $board_delete = $_POST["board_delete"];
     $reply_delete = $_POST["reply_delete"];
     $board_no = $_POST["board_no"];
@@ -11,8 +12,14 @@
     echo "board_pw : " . $board_pw . "<br>";
 
     if ($board_delete == 1) {
+        if($superman == 1){
+
+        $sql ="DELETE FROM board WHERE board_no=" . $board_no . "";
+
+        }else{
 
         $sql = "DELETE FROM board WHERE board_pw='" . $board_pw . "' AND board_no=" . $board_no . "";
+        }
 
         $result = $pdo->prepare($sql);
 
@@ -20,17 +27,29 @@
 
         $pdo = null;
 
-        header("Location: http://localhost/board_list.php");
+        if($superman == 1){
+            echo "good";
+        }else{
+            header("Location: http://localhost/board_list.php");
+        }
+
+        
     } else if ($reply_delete == 2) {
-
-        $sql1 = "DELETE FROM reply WHERE reply_pw='" . $reply_pw . "' and reply_no=" . $reply_no . "";
-
+        if($superman == 1){
+            $sql1 = "DELETE FROM reply WHERE reply_no=" . $reply_no . "";
+        }else{
+            $sql1 = "DELETE FROM reply WHERE reply_pw='" . $reply_pw . "' and reply_no=" . $reply_no . "";
+        }
+        
         $result1 = $pdo->prepare($sql1);
 
         $result1->execute();
 
         $pdo = null;
 
-        header("Location: http://localhost/board_detail.php?board_no=" . $board_no . "");
+        if($superman == 1){
+            echo "good";
+        }else{
+            header("Location: http://localhost/board_detail.php?board_no=" . $board_no . "");
+        }   
     }
-    ?>
