@@ -4,6 +4,7 @@
 <head>
     <?php
         require_once __DIR__ . '/head.html';
+        require_once __DIR__ . '/session.php';
     ?>
 </head>
 
@@ -34,26 +35,31 @@
     </nav>
 
     <div class="mb-3" style="margin-top:10px;">
-        <label for="exampleFormControlInput1" class="form-label" style="margin-left:600px;">게시글 내용</label>
-        <div class="form-control" id="exampleFormControlInput1" style="width:500px;height:200px;font-size:12px;margin-left:600px;"><?php echo $row1['board_text'] ?></div>
+        <label for="exampleFormControlInput1" class="form-label" style="margin-left:600px; font-size:13px;">게시글 내용</label>
+        <div class="form-control" id="exampleFormControlInput1" style="width:500px;height:160px;font-size:12px;margin-left:600px;"><?php echo $row1['board_text'] ?></div>
     </div>
     <div>
 
         <form action="/board_reply_action.php" method="post">
-            <div class="form-group">
-                <label for="exampleFormControlInput1" style="margin-left: 600px;">작성자</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" name="reply_user" style="width:500px;height:40px;font-size:12px;margin-left:600px;">
+            <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label" style="margin-left: 600px; font-size:13px;">작성자</label>
+                <div class="form-control" id="exampleFormControlInput1" name="reply_user" style="width:500px;height:40px;font-size:12px;margin-left:600px;"><?php echo $_SESSION['user_fullname'] ?></div>
+                <input type="hidden" class="form-control" name="reply_user" value="<?php echo $_SESSION['user_fullname'] ?>">
                 <input type="hidden" name="board_no" value="<?php echo $board_no ?>">
             </div>
-
+            <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label" style="margin-left: 600px; font-size:13px;">이메일</label>
+                <div class="form-control" id="exampleFormControlInput1" name="user_email" style="width:500px;height:40px;font-size:12px;margin-left:600px;"><?php echo $_SESSION['user_email'] ?></div>
+                <input type="hidden" class="form-control" name="user_email" value="<?php echo $_SESSION['user_email'] ?>">
+            </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1" style="margin-left: 600px;">비밀번호</label>
+                <label for="exampleFormControlInput1" style="margin-left: 600px; font-size:13px;">비밀번호</label>
                 <input type="password" class="form-control" id="exampleFormControlInput1" name="reply_pw" style="width:500px;height:40px;font-size:12px;margin-left:600px;">
             </div>
 
             <div class="form-group">
-                <label for="exampleFormControlTextarea1" style="margin-left:600px;">댓글 내용</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="댓글내용을 적어주세요." name="reply_text" style="width:500px;height:300px;font-size:12px;margin-left:600px;"></textarea>
+                <label for="exampleFormControlTextarea1" style="margin-left:600px; font-size:13px;">댓글 내용</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="댓글내용을 적어주세요." name="reply_text" style="width:500px;height:250px;font-size:12px;margin-left:600px;"></textarea>
             </div>
             <div>
                 <button type="submit" class="btn btn-outline-secondary" style="width:90px; height:30px; font-size:0.7em; margin-left:820px">완료 </button>

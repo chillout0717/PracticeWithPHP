@@ -2,6 +2,8 @@
 <html>
 <?php
 require_once __DIR__ . '/top_bar.php';
+
+require_once __DIR__ . '/session.php';
 ?>
 
 <head>
@@ -33,11 +35,17 @@ require_once __DIR__ . '/head.html';
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1" style="margin-left: 680px;">작성자 이름</label>
-            <input type="text" class="form-control" name="board_user" style="width:500px;height:40px;font-size:12px;margin-left:680px;">
+            <div class="form-control" id="exampleFormControlInput1" style="width:500px;height:40px;font-size:12px;margin-left:680px;"><?php echo $_SESSION['user_fullname'] ?></div>
+            <input type="hidden" class="form-control" name="board_user" value="<?php echo $_SESSION['user_fullname'] ?>">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1" style="margin-left: 680px;">이메일</label>
+            <div class="form-control" id="exampleFormControlInput1" style="width:500px;height:40px;font-size:12px;margin-left:680px;"><?php echo $_SESSION['user_email'] ?></div>
+            <input type="hidden" class="form-control" name="user_email" value="<?php echo $_SESSION['user_email'] ?>">
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1" style="margin-left: 680px;">내 용</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="board_text" style="width:500px;height:300px;font-size:12px;margin-left:680px;"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="board_text" style="width:500px;height:240px;font-size:12px;margin-left:680px;"></textarea>
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1" style="margin-left: 680px;">비밀번호</label>

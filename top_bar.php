@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href='./css/top_bar.css'>
+
+</html>
 <?php
 require_once __DIR__ . '/session.php';
 ?>
@@ -19,15 +23,27 @@ require_once __DIR__ . '/session.php';
                             <li><a class="dropdown-item" href='/board_list.php'>전체글</a></li>
                             <li><a class="dropdown-item" href='/board_list.php?sortNum=1&board_category=1&page=1'>잡담</a></li>
                             <li><a class="dropdown-item" href='/board_list.php?sortNum=1&board_category=2&page=1'>고민거리</a></li>
-                            <li><a class="dropdown-item" href='/board_list.php?sortNum=1&board_category=3&page=1'>메뉴 추천</a></li>
+                            <li><a class="dropdown-item" href='/board_list.php?sortNum=1&board_category=3&page=1'>메뉴추천</a></li>
                         </ul>
                     </li>
-                    <img src="https://previews.123rf.com/images/afe207/afe2071602/afe207160200028/52329315-m%C3%A4nnliches-avatarprofilbild-schattenbildlichtschatten.jpg" width="45px" height="45px" style="border-radius:70%;float:right;" onclick="location.href='/profile.php'">
+                </ul>
+            </div>
+
+
+            <div class="login">
+                <ul class="navbar-nav">
+                    <?php
+                    if (isset($_SESSION['user_fullname'])) {
+                    ?>
+                        <li class="nav-item">
+                            <img src="https://previews.123rf.com/images/afe207/afe2071602/afe207160200028/52329315-m%C3%A4nnliches-avatarprofilbild-schattenbildlichtschatten.jpg" width="45px" height="45px" style="border-radius:70%;float:right;" onclick="location.href='/profile.php'">
+                        </li>
+                    <?php }
+                    ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="margin-left:10px;" onclick="location.href='/profile.php'"><?php echo $_SESSION['user_fullname'] ?></a>
+                        <a class="nav-link" onclick="location.href='/profile.php'"><?php echo $_SESSION['user_fullname'] ?></a>
                     </li>
-
                     <?php
                     if (isset($_SESSION['user_fullname'])) {
                     ?> <li class="nav-item">
@@ -44,6 +60,8 @@ require_once __DIR__ . '/session.php';
                     ?>
                 </ul>
             </div>
+
+
         </div>
     </nav>
 </nav>

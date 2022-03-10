@@ -8,7 +8,7 @@
   ?>
   <link rel="stylesheet" type="text/css" href='./css/board_list.css'>
 
-  <script>
+  <!-- <script>
     $(document).ready(function() {
 
       $(".powerDel").on("click", function() {
@@ -16,23 +16,29 @@
         var superman = $("#superNo").val();
         var board_delete = 1;
 
-        var alldata = {"board_no":board_no, "superman":superman, "board_delete":board_delete}
+        var alldata = {
+          "board_no": board_no,
+          "superman": superman,
+          "board_delete": board_delete
+        }
         $.ajax({
           url: "board_delete_action.php",
           type: "POST",
           data: alldata,
 
-          success : function(data){
-            if(data ==="good"){
+          success: function(data) {
+            if (data === "good") {
               alert("정상적으로 삭제 되었습니다.");
-            }else{
+              window.location.reload();
+            } else {
               alert("문제가 발생하였습니다.");
+              window.location.reload();
             }
           }
         })
       });
     });
-  </script>
+  </script> -->
 </head>
 
 <body>
@@ -90,17 +96,17 @@
     $day_after_tomorrowHumidity = "찾아 올 수";
     $weather3 = " 없습니다.";
   } else {
-    $todayTemp = $data['list'][4]['main']['temp_max'] - 273.15 . "°C";
-    $todayHumidity = $data['list'][4]['main']['humidity'] . "%";
-    $weather1 = $data['list'][4]['weather'][0]['main'];
+    $todayTemp = $data['list'][5]['main']['temp_max'] - 273.15 . "°C";
+    $todayHumidity = $data['list'][5]['main']['humidity'] . "%";
+    $weather1 = $data['list'][5]['weather'][0]['main'];
 
-    $tomorrowTemp = $data['list'][12]['main']['temp_max'] - 273.15 . "°C";
-    $tomorrowHumidity = $data['list'][12]['main']['humidity'] . "%";
-    $weather2 = $data['list'][12]['weather'][0]['main'];
+    $tomorrowTemp = $data['list'][13]['main']['temp_max'] - 273.15 . "°C";
+    $tomorrowHumidity = $data['list'][13]['main']['humidity'] . "%";
+    $weather2 = $data['list'][13]['weather'][0]['main'];
 
-    $day_after_tomorrowTemp = $data['list'][20]['main']['temp_max'] - 273.15 . "°C";
-    $day_after_tomorrowHumidity = $data['list'][20]['main']['humidity'] . "%";
-    $weather3 = $data['list'][20]['weather'][0]['main'];
+    $day_after_tomorrowTemp = $data['list'][21]['main']['temp_max'] - 273.15 . "°C";
+    $day_after_tomorrowHumidity = $data['list'][21]['main']['humidity'] . "%";
+    $weather3 = $data['list'][21]['weather'][0]['main'];
   }
 
   ?>
@@ -220,11 +226,6 @@
         <th style="width:10%;text-align: center">작성일</th>
         <th style="width:10%;text-align: center">작성자</th>
         <th style="width:10%;text-align: center">조회수</th>
-        <?php
-        if ($_SESSION['superman'] == 1) {
-        ?> <th style="width:10%;text-align: center">삭제</th>
-        <?php }
-        ?>
       </tr>
     </thead>
     <tbody>
@@ -275,15 +276,6 @@
             echo $row["board_hit"];
             ?>
           </td>
-          <?php
-          if ($_SESSION['superman'] == 1) {
-          ?> <td style="width:10%;text-align: center">
-              <button type="button" class="powerDel">삭제</button>
-              <input type="hidden" id="superBoardNo"name="board_no" value="<?php echo $row["board_no"]?>">
-              <input type="hidden" id="superNo" name="superman" value="<?php echo $_SESSION['superman']?>">
-            </td>
-          <?php }
-          ?>
         </tr>
       <?php
       }
