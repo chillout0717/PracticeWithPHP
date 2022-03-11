@@ -1,6 +1,19 @@
 .main{
     margin-top: -20px;
+    width: 1900px;
+    height: 900px;
+    display: inline-block;
 }
+.top{
+    width: 1900px;
+    height: 450px;
+}
+
+.bottom{
+    width: 1900px;
+    height: 450px;
+}
+
 button{
     width: 75px;
     height: 32px;
@@ -15,10 +28,8 @@ button{
 
 .row{
     height: 26.5px;
+    margin: auto;
   
 }
 
-#profile{
-    text-align: center;
-}
 

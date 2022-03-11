@@ -40,18 +40,16 @@
             <tr>
                 <?php
                 if ($reply_no == null) {
-                ?> <td>게시글 비밀 번호를 입력해주세요.</td>
+                ?> <td>계정 비밀 번호를 입력해주세요.</td>
                 <?php } else {
-                ?> <td>댓글 비밀 번호를 입력해주세요.</td>
+                ?> <td>계정 비밀 번호를 입력해주세요.</td>
                 <?php
                 }
                 ?>
             </tr>
             <tr>
                 <td><input type="password" name="password" style="width:500px;">
-
                     <input type="hidden" name="board_no" value="<?php echo $board_no ?>">
-
                 </td>
             </tr>
             <tr>

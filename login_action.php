@@ -40,6 +40,7 @@
         $_SESSION['user_email'] = $user_email;
         $_SESSION['user_fullname'] = $row["user_fullname"];
         $_SESSION['user_phone'] = $row["user_phone"];
+        $_SESSION['user_pw'] = $row["user_pw"];
         $_SESSION['user_addr1'] = $row["user_addr1"];
         $_SESSION['user_addr2'] = $row["user_addr2"];
         $_SESSION['user_city'] = $row["user_city"];
@@ -52,6 +53,7 @@
         echo $_SESSION['user_email'];
         echo $_SESSION['user_fullname'];
         echo $_SESSION['user_phone'];
+        echo $_SESSION['user_pw'];
         echo $_SESSION['user_addr1'];
         echo $_SESSION['user_addr2'];
         echo $_SESSION['user_city'];

@@ -1,53 +1,53 @@
 <?php
-    require_once __DIR__ . '/dbconn.php';
+require_once __DIR__ . '/dbconn.php';
 
-    $superman = $_POST["superman"];
-    $board_delete = $_POST["board_delete"];
-    $reply_delete = $_POST["reply_delete"];
-    $board_no = $_POST["board_no"];
-    $board_pw = $_POST["password"];
-    $reply_no = $_POST["reply_no"];
-    $reply_pw = $_POST["password"];
+$superman = $_POST["superman"];
+$board_delete = $_POST["board_delete"];
+$reply_delete = $_POST["reply_delete"];
+$board_no = $_POST["board_no"];
+$user_pw = $_POST["origin_pw"];
+$reply_no = $_POST["reply_no"];
+$delete_pw = $_POST["delete_pw"];
 
-    $superman = $_GET["superman"];
-    $board_delete = $_GET["board_delete"];
-    $board_no = $_GET["board_no"];
-
-
-    if ($board_delete == 1) {
-        if($superman == 1){
-
-        $sql ="DELETE FROM board WHERE board_no=" . $board_no . "";
-
-        }else{
-
-        $sql = "DELETE FROM board WHERE board_pw='" . $board_pw . "' AND board_no=" . $board_no . "";
-        }
-
+if ($board_delete == 1) {
+    if ($superman == 1) {
+        $sql = "DELETE FROM board WHERE board_no=" . $board_no . "";
         $result = $pdo->prepare($sql);
-
         $result->execute();
-
         $pdo = null;
 
-        echo "게시물이 삭제되었습니다.";
-        header("Location: http://localhost/board_list.php");
+        echo "good";
+    } else {
+        if (password_verify($delete_pw, $user_pw)) {
+            $sql = "DELETE FROM board WHERE board_no=" . $board_no . "";
+            $result = $pdo->prepare($sql);
+            $result->execute();
+            $pdo = null;
 
-
-        
-    } else if ($reply_delete == 2) {
-        if($superman == 1){
-            $sql1 = "DELETE FROM reply WHERE reply_no=" . $reply_no . "";
+            echo "good";
         }else{
-            $sql1 = "DELETE FROM reply WHERE reply_pw='" . $reply_pw . "' and reply_no=" . $reply_no . "";
+            echo "bad";
+        }
+    }
+} else if ($reply_delete == 2) {
+    if ($superman == 1) {
+        $sql1 = "DELETE FROM reply WHERE reply_no=" . $reply_no . "";
+        $result = $pdo->prepare($sql1);
+        $result->execute();
+        $pdo = null;
+
+        echo "good";
+    } else {
+        if(password_verify($delete_pw, $user_pw)){
+            $sql1 = "DELETE FROM reply WHERE reply_no=" . $reply_no . "";
+            $result = $pdo->prepare($sql1);
+            $result->execute();
+            $pdo = null;
+
+            echo "good";
+        }else{
+            echo "bad";
         }
         
-        $result1 = $pdo->prepare($sql1);
-
-        $result1->execute();
-
-        $pdo = null;
-
-        echo "게시물이 삭제되었습니다.";
-        header("Location: http://localhost/board_detail.php?board_no=" . $board_no . "");
     }
+}

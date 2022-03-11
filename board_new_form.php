@@ -45,11 +45,7 @@ require_once __DIR__ . '/head.html';
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1" style="margin-left: 680px;">내 용</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="board_text" style="width:500px;height:240px;font-size:12px;margin-left:680px;"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlInput1" style="margin-left: 680px;">비밀번호</label>
-            <input type="password" class="form-control" name="board_pw" style="width:500px;height:40px;font-size:12px;margin-left:680px;">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="board_text" style="width:500px;height:280px;font-size:12px;margin-left:680px;"></textarea>
         </div>
         <button type="submit" class="btn btn-outline-secondary" style="width:90px; height:30px; font-size:0.7em; margin-left: 1000px;">완료 </button>
         <button type="button" class="btn btn-outline-secondary" style="width:90px; height:30px; font-size:0.7em;" onClick="history.back(-1);">뒤로가기</button></td>

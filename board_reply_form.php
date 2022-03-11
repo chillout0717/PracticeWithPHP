@@ -53,13 +53,8 @@
                 <input type="hidden" class="form-control" name="user_email" value="<?php echo $_SESSION['user_email'] ?>">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1" style="margin-left: 600px; font-size:13px;">비밀번호</label>
-                <input type="password" class="form-control" id="exampleFormControlInput1" name="reply_pw" style="width:500px;height:40px;font-size:12px;margin-left:600px;">
-            </div>
-
-            <div class="form-group">
                 <label for="exampleFormControlTextarea1" style="margin-left:600px; font-size:13px;">댓글 내용</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="댓글내용을 적어주세요." name="reply_text" style="width:500px;height:250px;font-size:12px;margin-left:600px;"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="댓글내용을 적어주세요." name="reply_text" style="width:500px;height:280px;font-size:12px;margin-left:600px;"></textarea>
             </div>
             <div>
                 <button type="submit" class="btn btn-outline-secondary" style="width:90px; height:30px; font-size:0.7em; margin-left:820px">완료 </button>
