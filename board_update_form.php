@@ -4,6 +4,7 @@
 <head>
     <?php
         require_once __DIR__ . '/head.html';
+        require_once __DIR__ . '/session.php';
     ?>
 </head>
 
@@ -47,11 +48,12 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleFormControlInput1" style="margin-left: 600px;">비밀번호</label>
-            <input type="password" class="form-control" name="board_pw" style="width:500px;height:40px;font-size:12px;margin-left:600px;">
+            <label for="exampleFormControlInput1" style="margin-left: 600px;">계정 비밀번호</label>
+            <input type="password" class="form-control" name="user_pw" style="width:500px;height:40px;font-size:12px;margin-left:600px;">
+            <input type="hidden" name="origin_pw" value="<?php echo $_SESSION['user_pw'] ?>">
         </div>
         <br>
-        <button type="submit" class="btn btn-outline-secondary" style="width:90px; height:30px; font-size:0.7em; margin-left: 920px;">게시글 수정</button>
+        <button type="submit" id="submit" class="btn btn-outline-secondary" style="width:90px; height:30px; font-size:0.7em; margin-left: 920px;">게시글 수정</button>
         <button type="button" class="btn btn-outline-secondary" style="width:80px; height:30px; font-size:0.7em;" onClick="history.back(-1);">뒤로가기</button>
     </form>
 </body>

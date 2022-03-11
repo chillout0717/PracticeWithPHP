@@ -138,6 +138,7 @@
                     } else {
                         self.location = "/board_detail.php?board_no=<?= $board_no ?>"
                     }
+
                 });
 
             });
@@ -248,7 +249,7 @@
                         success: function(data) {
 
                             if ($("#flexSwitchCheckDefault").attr('value') === 'off') {
-                                $("#exampleFormControlInput2").text(data.translated_text[0]);
+                                $("#exampleFormControlInput2").text(data.translated_text);
                                 $("#flexSwitchCheckDefault").attr('value', 'on');
 
                             } else {

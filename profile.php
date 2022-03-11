@@ -83,7 +83,7 @@
             <section>
                 <div class="container py-5">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div id="name"class="col-lg-4">
                             <div class="card mb-4" id="profile">
                                 <div class="card-body text-center">
                                     <img src="https://previews.123rf.com/images/afe207/afe2071602/afe207160200028/52329315-m%C3%A4nnliches-avatarprofilbild-schattenbildlichtschatten.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
@@ -98,7 +98,7 @@
                                     </p>
                                     <p class="text-muted mb-4"><?php echo $_SESSION['user_city'] ?>, <?php echo $_SESSION['user_state'] ?></p>
                                     <div class="d-flex justify-content-center mb-2">
-                                        <button type="button" id="button1" class="btn btn-outline-secondary">Follow</button>
+                                        
                                     </div>
                                 </div>
                             </div>

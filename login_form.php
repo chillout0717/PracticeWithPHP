@@ -5,8 +5,21 @@
     <?php
         require_once __DIR__ . '/head.html';
     ?>
-
   <link rel="stylesheet" type="text/css" href='./css/login_form.css'>
+
+  <script>
+    $(function(){
+      $(".findId").on("click", function(){
+        var findCategory = 1;
+        self.location = "/find_id_pw.php?findCategory="+findCategory;
+      });
+
+      $(".findPw").on("click", function(){
+        var findCategory = 2;
+        self.location = "/find_id_pw.php?findCategory="+findCategory;
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -24,10 +37,13 @@
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="user_pw">
         <label for="floatingPassword">Password</label>
       </div>
-
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
+      <div class="find mb-3">
+        <label style="display:flex;">
+          <p class="find" style="font-size:0.8em">아이디 또는 비밀번호를 잊으셨나요?</p>
+          <u type="button" class="findId "style="font-size:0.9em; margin-left:10px;">ID</u>
+          <p style="font-size:0.8em;">&nbsp&nbsp/&nbsp&nbsp</p>
+          <u type="button" class="findPw "style="font-size:0.9em;">PW</u>
+          <p style="font-size:0.8em;">찾기</p>
         </label>
       </div>
       <button class="w-100 btn btn-lg btn-secondary" type="submit">로그인</button>

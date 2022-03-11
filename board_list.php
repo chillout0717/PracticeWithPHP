@@ -8,6 +8,10 @@
   ?>
   <link rel="stylesheet" type="text/css" href='./css/board_list.css'>
 
+
+  <!-- 반응형 으로 다 바꿔놓기 -->
+  <!-- 인증문자 -->
+
   <!-- <script>
     $(document).ready(function() {
 
